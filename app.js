@@ -15,6 +15,9 @@ app.use(express.json())
 app.get('/',(req,res)=>{
     res.render("home")
 })
+app.get('/create',(req,res)=>{
+    res.render("create")
+})
 
 mongoose.connect('mongodb+srv://gulu:gulu123@cluster0.kacbg.mongodb.net/poll', 
                 {
