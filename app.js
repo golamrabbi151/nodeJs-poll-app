@@ -30,4 +30,3 @@ mongoose.connect('mongodb+srv://gulu:gulu123@cluster0.kacbg.mongodb.net/poll',
                     console.log(e)
                 })
 
-
