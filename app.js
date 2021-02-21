@@ -1,6 +1,7 @@
 const express = require("express")
 const mongoose = require("mongoose");
 const morgan = require("morgan")
+const PollController = require("./controller/PollController")
 
 const app = express();
 
@@ -15,9 +16,20 @@ app.use(express.json())
 app.get('/',(req,res)=>{
     res.render("home")
 })
-app.get('/create',(req,res)=>{
-    res.render("create")
-})
+// app.get('/create',(req,res)=>{
+//     res.render("create")
+// })
+
+// create poll
+app.get('/create',PollController.GetPollForm)
+// poll list 
+app.post('/create',PollController.PostPoll)
+// poll list
+app.get('/polls',PollController.ShowPollList)
+// single poll
+app.get('/polls/:id',PollController.ViewSinglePoll)
+// vote poll
+app.post('/polls/:id',PollController.SubmitVote)
 
 mongoose.connect('mongodb+srv://gulu:gulu123@cluster0.kacbg.mongodb.net/poll', 
                 {

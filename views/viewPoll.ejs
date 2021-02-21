@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>View Poll</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 my-5">
+                <div class="card card-body">
+                    <h5>
+                        <%= polls.title %>
+                    </h5>
+                    <p>
+                        <%= polls.description %>
+                    </p>
+                    <div class="my-3">
+                        <h5>Result</h5>
+                        <ul class="list-group">
+                            <% result.forEach(res => { %>
+                                <li class="list-group-item">
+                                    <p>
+                                        <%= res.name %> --> <strong> <%= res.parcentage.toFixed(2) %> %</strong>
+                                    </p>
+                                </li>
+                            <% }) %>
+
+                        </ul>
+                    </div>
+                    <div class="my-4">
+                        <h4>What is Your Opinions</h4>
+                        <form action="/polls/<%= polls._id %>" method="post">
+                            <% polls.options.forEach(function(option){ %>
+
+                                <div class="custom-control custom-radio">
+                                    <input type="radio" name="options" id="<%= option._id %>"
+                                        class="custom-control-input" value="<%= option._id %>">
+                                    <label class="custom-control-label" for="<%= option._id %>">
+                                        <%= option.name %>
+                                    </label>
+                                </div>
+
+                                <% }) %>
+                                    <input type="submit" value="vote" class="btn btn-primary">
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+
+</html>
